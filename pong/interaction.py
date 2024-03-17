@@ -27,7 +27,7 @@ def handle_collisions(player: Player, opponent: Player, ball: Ball):
         opponent.nudge(ball)
 
 
-def handle_score(ball: Ball, score: Score, dt: int):
+def handle_score(ball: Ball, score: Score, dt: float):
     score.time += dt
     if ball.left <= 0:
         score.player += 1

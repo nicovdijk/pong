@@ -1,17 +1,11 @@
+import random
+from math import sqrt
+
 import pygame
 
-from .constants import (
-    accelerate_factor,
-    ball_size,
-    ball_speed,
-    margin,
-    nudge_factor,
-    player_size_x,
-    player_size_y,
-    player_speed,
-    screen_height,
-    screen_width,
-)
+from .constants import (acceleration, ball_size, ball_speed, margin,
+                        nudge_factor, player_size_x, player_size_y,
+                        player_speed, screen_height, screen_width)
 
 
 class MovingRect(pygame.Rect):
@@ -24,17 +18,26 @@ class MovingRect(pygame.Rect):
 
 
 class Ball(MovingRect):
-    speed_x = ball_speed
-    speed_y = ball_speed
 
-    def increase_speed(self):
-        self.speed_x *= accelerate_factor
+    def increase_speed(self, dt: float):
+        snelheid = sqrt(self.speed_x**2 + self.speed_y**2)
+        nieuwe_snelheid = snelheid + acceleration * dt
+        factor = nieuwe_snelheid / snelheid
+        self.speed_x *= factor
+        self.speed_y *= factor
 
     def reset(self):
         self.x = screen_width / 2 - 15
         self.y = screen_height / 2 - ball_size / 2
-        self.speed_x = ball_speed
-        self.speed_y = ball_speed
+        self.random_snelheid()
+
+    def random_snelheid(self):
+        snelheid_x = random.choice((-1.0, 1.0))
+        snelheid_y = -1.0 + 2 * random.random()
+        snelheid = sqrt(snelheid_x**2 + snelheid_y**2)
+        factor = ball_speed / snelheid
+        self.speed_x = snelheid_x * factor
+        self.speed_y = snelheid_y * factor
 
 
 class Player(MovingRect):

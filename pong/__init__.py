@@ -17,6 +17,7 @@ opponent = get_opponent()
 score = get_score()
 
 running = True
+ball.random_snelheid()
 while running:
 
     for event in pygame.event.get():
@@ -32,8 +33,7 @@ while running:
     handle_collisions(player, opponent, ball)
     handle_score(ball, score, dt)
     if score.time > time_out:
-        ball.increase_speed()
-        score.time = 0
+        ball.increase_speed(dt)
 
     screen.fill(bg_color)
     pygame.draw.rect(screen, light_grey, player)
