@@ -1,4 +1,4 @@
-from .constante import schermhoogte, schermbreedte
+from .constante import schermbreedte, schermhoogte
 from .rect import Bal, Speler
 from .tekst import Score
 

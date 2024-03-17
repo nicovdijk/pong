@@ -3,18 +3,9 @@ from math import sqrt
 
 import pygame
 
-from .constante import (
-    versnelling,
-    balgrootte,
-    balsnelheid,
-    marge,
-    duwfactor,
-    spelerbreedte,
-    spelerhoogte,
-    spelersnelheid,
-    schermhoogte,
-    schermbreedte,
-)
+from .constante import (balgrootte, balsnelheid, duwfactor, marge,
+                        schermbreedte, schermhoogte, spelerbreedte,
+                        spelerhoogte, spelersnelheid, versnelling)
 
 
 class BewegendeRect(pygame.Rect):

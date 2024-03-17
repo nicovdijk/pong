@@ -1,7 +1,7 @@
 import pygame
 
+from .constante import lettergrootte, marge, schermbreedte, scorepositie
 from .kleur import lichtgrijs
-from .constante import lettergrootte, marge, scorepositie, schermbreedte
 
 
 class Score:

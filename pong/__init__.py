@@ -1,9 +1,9 @@
 import pygame
 
-from .kleur import achtergrond_kleur, lichtgrijs
-from .constante import schermhoogte, schermbreedte, versneltijd
+from .constante import schermbreedte, schermhoogte, versneltijd
 from .interactie import verwerk_botsingen, verwerk_score
-from .rect import nieuwe_bal, nieuwe_tegenstander, nieuwe_speler
+from .kleur import achtergrond_kleur, lichtgrijs
+from .rect import nieuwe_bal, nieuwe_speler, nieuwe_tegenstander
 from .tekst import nieuwe_score
 
 pygame.init()
