@@ -9,10 +9,14 @@ def verwerk_botsingen(speler: Speler, tegenstander: Speler, bal: Bal):
         bal.snelheid_y = abs(bal.snelheid_y)
     elif bal.bottom >= schermhoogte:
         bal.snelheid_y = -abs(bal.snelheid_y)
-    if speler.top <= 0 or speler.bottom >= schermhoogte:
-        speler.snelheid_y = 0
-    if tegenstander.top <= 0 or tegenstander.bottom >= schermhoogte:
-        tegenstander.snelheid_y = 0
+    if speler.top <= 0:
+        speler.top = 0
+    if speler.bottom >= schermhoogte:
+        speler.bottom = schermhoogte
+    if tegenstander.top <= 0:
+        tegenstander.top = 0
+    if tegenstander.bottom >= schermhoogte:
+        tegenstander.bottom = schermhoogte
 
     # Botsingen tussen de bal en de spelers
     if bal.colliderect(speler):
@@ -23,13 +27,12 @@ def verwerk_botsingen(speler: Speler, tegenstander: Speler, bal: Bal):
         tegenstander.duw(bal)
 
 
-def verwerk_score(bal: Bal, score: Score, dt: float):
-    score.tijd += dt
+def verwerk_score(bal: Bal, score: Score):
     if bal.left <= 0:
         score.speler += 1
     elif bal.right >= schermbreedte:
         score.tegenstander += 1
     else:
-        return
+        return False
     bal.herstel()
-    score.tijd = 0
+    return True

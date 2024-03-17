@@ -1,6 +1,6 @@
 import pygame
 
-from .constante import schermbreedte, schermhoogte, versneltijd
+from .constante import schermbreedte, schermhoogte, versnelling, versneltijd
 from .interactie import verwerk_botsingen, verwerk_score
 from .kleur import achtergrond_kleur, lichtgrijs
 from .rect import nieuwe_bal, nieuwe_speler, nieuwe_tegenstander
@@ -17,6 +17,7 @@ tegenstander = nieuwe_tegenstander()
 score = nieuwe_score()
 
 loopt = True
+timer = 0
 bal.random_snelheid()
 while loopt:
 
@@ -27,14 +28,16 @@ while loopt:
             loopt = False
 
     dt = klok.tick(60) / 1000
-    verwerk_botsingen(speler, tegenstander, bal)
+    timer += dt
     bal.beweeg(dt)
     speler.beweeg(dt)
     tegenstander.beweeg(dt)
-    verwerk_score(bal, score, dt)
-    if score.tijd > versneltijd:
-        bal.versnel(dt)
-        score.tijd = 0
+    verwerk_botsingen(speler, tegenstander, bal)
+    if verwerk_score(bal, score):
+        timer = 0
+    elif timer > versneltijd:
+        bal.versnel(versnelling)
+        timer = 0
 
     scherm.fill(achtergrond_kleur)
     pygame.draw.rect(scherm, lichtgrijs, speler)

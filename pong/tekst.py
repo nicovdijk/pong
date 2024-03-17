@@ -7,7 +7,6 @@ from .kleur import lichtgrijs
 class Score:
     speler = 0
     tegenstander = 0
-    tijd = 0
     lettertype = None
 
     def draw(self, scherm: pygame.Surface):

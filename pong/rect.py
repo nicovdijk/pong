@@ -5,7 +5,7 @@ import pygame
 
 from .constante import (balgrootte, balsnelheid, duwfactor, marge,
                         schermbreedte, schermhoogte, spelerbreedte,
-                        spelerhoogte, spelersnelheid, versnelling)
+                        spelerhoogte, spelersnelheid)
 
 
 class BewegendeRect(pygame.Rect):
